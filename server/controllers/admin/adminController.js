@@ -29,7 +29,12 @@ const postJob = async (req, res) => {
 
 const createCompany = async( req,res)=>{
     try{
+
         const {name,image} = req.body;
+        const ifexist = Company.findOne(name);
+        if(ifexist){
+            return res.json({ success: false, message: "Company already exists" });
+        }
         const company = new Company({
             name,
             image,
