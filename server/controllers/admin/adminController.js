@@ -33,7 +33,8 @@ const createCompany = async( req,res)=>{
         const company = new Company({
             name,
             image,
-            adminCreated: true
+            adminCreated: true,
+            email : "admin@xofle.com"
         })
 
         await company.save();
