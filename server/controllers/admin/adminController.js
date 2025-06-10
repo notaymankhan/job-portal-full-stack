@@ -31,7 +31,7 @@ const createCompany = async( req,res)=>{
     try{
 
         const {name,image} = req.body;
-        const ifexist = Company.findOne(name);
+        const ifexist = await Company.findOne({name});
         if(ifexist){
             return res.json({ success: false, message: "Company already exists" });
         }
