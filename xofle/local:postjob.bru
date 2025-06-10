@@ -1,0 +1,25 @@
+meta {
+  name: local:postjob
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/api/admin/post-job
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "SE - 3",
+    "description": "Develop and maintain web applications.",
+    "location": "New York, NY",
+    "category": "Engineering",
+    "level": "Mid",
+    "salary": 120000,
+    "visible": true,
+    "companyId": "6848615334bf7728f06eeb71",
+    "applyLink" : "https://careers.nike.com/manager-software-engineering-global-converse/job/R-60761?source=BY_Google_SEM&utm_source=BY_Google_SEM&utm_medium=employer_ad&utm_campaign=TACOE%20APLA_India%20&utm_content=NikeInc"
+  }
+}

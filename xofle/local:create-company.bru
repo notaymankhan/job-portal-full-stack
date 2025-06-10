@@ -1,0 +1,18 @@
+meta {
+  name: local:create-company
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:3000/api/admin/create-company
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name" : "Dummy",
+    "image": "https://res.cloudinary.com/dnojbwewq/image/upload/v1749402621/zxwoi3qls38sr5xrsn8i"
+  }
+}
