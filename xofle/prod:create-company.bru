@@ -1,0 +1,24 @@
+meta {
+  name: prod:create-company
+  type: http
+  seq: 6
+}
+
+post {
+  url: http://localhost:3000/api/admin/create-company
+  body: json
+  auth: apikey
+}
+
+auth:apikey {
+  key: x-api-key
+  value: SKOObgO5kkRR25WiwmAZIq06VuCGIYzS
+  placement: header
+}
+
+body:json {
+  {
+    "name" : "Xofle",
+    "image": "https://res.cloudinary.com/dnojbwewq/image/upload/v1749402621/zxwoi3qls38sr5xrsn8i"
+  }
+}
