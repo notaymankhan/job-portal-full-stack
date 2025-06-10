@@ -18,6 +18,11 @@ export const registerCompany = async (req, res) => {
 
     try {
 
+        const adminCreated = await Company.findOne({ name, adminCreated: true })
+        if( adminCreated ) {
+            return res.json({ success: false, message: 'Company already registered by admin.. Please contact aymankhan92@gmail.com' })
+        }
+
         const companyExists = await Company.findOne({ email })
 
         if (companyExists) {

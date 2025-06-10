@@ -1,0 +1,17 @@
+meta {
+  name: local:getcompanyId
+  type: http
+  seq: 4
+}
+
+get {
+  url: http://localhost:3000/api/admin/getCompanyId
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "name" : "Dummy"
+  }
+}
