@@ -5,7 +5,19 @@ meta {
 }
 
 get {
-  url: https://job-portal-full-stack-dev.vercel.app/api/admin/getCompanyId
-  body: none
-  auth: none
+  url: https://job-portal-full-stack-server-chi.vercel.app/api/admin/getCompanyId
+  body: json
+  auth: apikey
+}
+
+auth:apikey {
+  key: x-api-key
+  value: SKOObgO5kkRR25WiwmAZIq06VuCGIYzS
+  placement: header
+}
+
+body:json {
+  {
+    "name" : "Dummy"
+  }
 }
