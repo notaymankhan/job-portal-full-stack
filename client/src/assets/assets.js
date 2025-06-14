@@ -73,23 +73,53 @@ export const assets = {
 }
 
 export const JobCategories = [
-    "Programming",
-    "Data Science",
-    "Designing",
-    "Networking",
-    "Management",
-    "Marketing",
+    "MarketingAndSales",
+    "QA",
+    "SoftwareEngineering",
+    "DevOps",
+    "DataScience",
+    "CustomerSuccess",
     "Cybersecurity",
+    "DesignAndCreative",
+    "ProductAndOperations",
+    "FinanceAndLegal",
+    "HrAndRecruiting",
+    "Others"
+
 ]
 
+export const JobCategoryMap = [
+    {
+        "Marketing & Sales": "MarketingAndSales",
+        "Social Media Marketing": "MarketingAndSales",
+        "testing": "QA",
+        "Software Engineering": "SoftwareEngineering",
+        "Programming": "SoftwareEngineering",
+        "DevOps & SysAdmin": "DevOps",
+        "Data Science": "DataScience",
+        "Customer Success": "CustomerSuccess",
+        "Technical Support": "SoftwareEngineering",
+        "Sales": "MarketingAndSales",
+        "Business Development": "MarketingAndSales",
+        "Copywriting & Content": "DesignAndCreative",
+        "Design & Creative": "DesignAndCreative",
+        "Web & App Design": "DesignAndCreative",
+        "Product & Operations": "ProductAndOperations",
+        "Finance & Legal": "FinanceAndLegal",
+        "HR & Recruiting": "HrAndRecruiting",
+        "Others": "Others"
+    }
+];
+
 export const JobLocations = [
+    "Remote",
     "Bangalore",
-    "Washington",
     "Hyderabad",
     "Mumbai",
-    "California",
+    "Delhi/NCR",
     "Chennai",
-    "New York"
+    "India",
+    "Pune"
 ]
 
 // Sample data for Manage Jobs Page
