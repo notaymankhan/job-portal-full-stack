@@ -20,8 +20,8 @@ const Hero = () => {
     return (
         <div className='container 2xl:px-20 mx-auto my-10'>
             <div className='bg-gradient-to-r from-purple-800 to-purple-950 text-white py-16 text-center mx-2 rounded-xl'>
-                <h2 className='text-2xl md:text-3xl lg:text-4xl font-medium mb-4'>Over 10,000+ jobs to apply</h2>
-                <p className='mb-8 max-w-xl mx-auto text-sm font-light px-5'>Your Next Big Career Move Starts Right Here - Explore the Best Job Opportunities and Take the First Step Toward Your Future!</p>
+                <h2 className='text-2xl md:text-3xl lg:text-4xl font-medium mb-4'>Over 10,000+ jobs to apply !!</h2>
+                <p className='mb-8 max-w-xl mx-auto text-sm font-light px-5'>Stop searching across multiple job boards. We bring all the opportunities to you in one place!</p>
                 <div className='flex items-center justify-between bg-white rounded text-gray-600 max-w-xl pl-4 mx-4 sm:mx-auto'>
                     <div className='flex items-center'>
                         <img className='h-4 sm:h-5' src={assets.search_icon} alt="" />
@@ -45,7 +45,7 @@ const Hero = () => {
 
             <div className='border border-gray-300 shadow-md mx-2 mt-5 p-6 rounded-md flex'>
                 <div className='flex justify-center gap-10 lg:gap-16 flex-wrap'>
-                    <p className='font-medium'>Trusted by</p>
+                    <p className='font-medium'>Jobs from</p>
                     <img className='h-6' src={assets.microsoft_logo} alt="" />
                     <img className='h-6' src={assets.walmart_logo} alt="" />
                     <img className='h-6' src={assets.accenture_logo} alt="" />

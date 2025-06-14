@@ -7,7 +7,13 @@ meta {
 post {
   url: http://localhost:3000/api/admin/post-job
   body: json
-  auth: none
+  auth: apikey
+}
+
+auth:apikey {
+  key: x-api-key
+  value: SKOObgO5kkRR25WiwmAZIq06VuCGIYzS
+  placement: header
 }
 
 body:json {
@@ -19,7 +25,7 @@ body:json {
     "level": "Mid",
     "salary": 120000,
     "visible": true,
-    "companyId": "6848615334bf7728f06eeb71",
+    "companyId": "684870a5369e0973610df419",
     "applyLink" : "https://careers.nike.com/manager-software-engineering-global-converse/job/R-60761?source=BY_Google_SEM&utm_source=BY_Google_SEM&utm_medium=employer_ad&utm_campaign=TACOE%20APLA_India%20&utm_content=NikeInc"
   }
 }

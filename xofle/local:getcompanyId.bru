@@ -7,7 +7,13 @@ meta {
 get {
   url: http://localhost:3000/api/admin/getCompanyId
   body: json
-  auth: none
+  auth: apikey
+}
+
+auth:apikey {
+  key: x-api-key
+  value: SKOObgO5kkRR25WiwmAZIq06VuCGIYzS
+  placement: header
 }
 
 body:json {
