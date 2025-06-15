@@ -34,15 +34,15 @@ export const AppContextProvider = (props) => {
     const fetchJobs = async () => {
         try {
             const startTime = Date.now(); // Get the current time in milliseconds
-            console.log("startTime = ", moment(startTime).format('YYYY-MM-DD HH:mm:ss'));
+            // console.log("startTime = ", moment(startTime).format('YYYY-MM-DD HH:mm:ss'));
 
             const { data } = await axios.get(backendUrl + '/api/jobs');
 
             if (data.success) {
-                console.log("Jobs fetched successfully:", data.jobs);
-                console.log("Number of Jobs Found = ", data.jobs.length);
+                // console.log("Jobs fetched successfully:", data.jobs);
+                // console.log("Number of Jobs Found = ", data.jobs.length);
                 const endTime = Date.now(); // Get the current time in milliseconds
-                console.log("endTime = ", moment(endTime).format('YYYY-MM-DD HH:mm:ss'));
+                // console.log("endTime = ", moment(endTime).format('YYYY-MM-DD HH:mm:ss'));
                 const duration = (endTime - startTime) / 1000; // Calculate duration in seconds
                 console.log("Jobs Found in Duration = ", duration, " seconds");
                 setJobs(data.jobs);

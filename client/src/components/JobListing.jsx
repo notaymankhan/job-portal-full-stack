@@ -28,7 +28,7 @@ const JobListing = () => {
 
     useEffect(() => {
         const filteringStartTime = Date.now();
-        console.log("filtering started at",moments(filteringStartTime).format('YYYY-MM-DD HH:mm:ss'));
+        // console.log("filtering started at",moments(filteringStartTime).format('YYYY-MM-DD HH:mm:ss'));
         const matchesCategory = (job) =>
             selectedCategories.length === 0 || selectedCategories.includes(job.category);
 
@@ -54,9 +54,9 @@ const JobListing = () => {
 
         setFilteredJobs(newFilteredJobs);
         const filteringEndTime = Date.now();
-        console.log("filtering ended at",moments(filteringEndTime).format('YYYY-MM-DD HH:mm:ss'));
+        // console.log("filtering ended at",moments(filteringEndTime).format('YYYY-MM-DD HH:mm:ss'));
         const filteringDuration = (filteringEndTime - filteringStartTime) / 1000; // in seconds
-        console.log("Filtering Duration = ", filteringDuration, " seconds");
+        console.log("Jobs Filtered Duration = ", filteringDuration, " seconds");
         setCurrentPage(1);
     }, [jobs, selectedCategories, selectedLocations, searchFilter]);
 
