@@ -113,14 +113,29 @@ export const JobCategoryMap = [
 
 export const JobLocations = [
     "Remote",
+    "India",
     "Bangalore",
     "Hyderabad",
     "Mumbai",
     "Delhi/NCR",
     "Chennai",
-    "India",
     "Pune"
+    ]
+
+export const JobExperienceLevel = [
+    "Entry Level",
+    "Associate Level",
+    "Intermediate Level",
+    "Senior",
 ]
+
+export const JobType = [
+    "Internship",
+    "FullTime",
+    "PartTime",
+    "Contract",
+]
+
 
 // Sample data for Manage Jobs Page
 export const manageJobsData = [
