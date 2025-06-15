@@ -3,6 +3,7 @@ import { AppContext } from '../context/AppContext';
 import { assets, JobCategories, JobLocations } from '../assets/assets';
 import JobCard from './JobCard';
 import Loading from './Loading.jsx';
+import moments from 'moment';
 
 const JobListing = () => {
     const { isSearched, searchFilter, setSearchFilter, jobs } = useContext(AppContext);
@@ -26,6 +27,8 @@ const JobListing = () => {
     };
 
     useEffect(() => {
+        const filteringStartTime = Date.now();
+        console.log("filtering started at",moments(filteringStartTime).format('YYYY-MM-DD HH:mm:ss'));
         const matchesCategory = (job) =>
             selectedCategories.length === 0 || selectedCategories.includes(job.category);
 
@@ -50,6 +53,10 @@ const JobListing = () => {
             );
 
         setFilteredJobs(newFilteredJobs);
+        const filteringEndTime = Date.now();
+        console.log("filtering ended at",moments(filteringEndTime).format('YYYY-MM-DD HH:mm:ss'));
+        const filteringDuration = (filteringEndTime - filteringStartTime) / 1000; // in seconds
+        console.log("Filtering Duration = ", filteringDuration, " seconds");
         setCurrentPage(1);
     }, [jobs, selectedCategories, selectedLocations, searchFilter]);
 
@@ -137,7 +144,7 @@ const JobListing = () => {
             </div>
 
             {/* Job listings */}
-            {!jobs ? (
+            {jobs.length ===0 ? (
                 <Loading />
             ) : filteredJobs.length === 0 ? (
                 <section className="w-full lg:w-3/4 text-gray-800 max-lg:px-4">
