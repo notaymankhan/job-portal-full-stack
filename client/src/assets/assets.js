@@ -119,24 +119,8 @@ export const JobLocations = [
     "Mumbai",
     "Delhi/NCR",
     "Chennai",
-    "Pune",
-    "Remote",
-    "India",
-    "Bangalore",
-    "Hyderabad",
-    "Mumbai",
-    "Delhi/NCR",
-    "Chennai",
-    "Pune",
-    "Remote",
-    "India",
-    "Bangalore",
-    "Hyderabad",
-    "Mumbai",
-    "Delhi/NCR",
-    "Chennai",
-    "Pune",
-]
+    "Pune"
+    ]
 
 export const JobExperienceLevel = [
     "Entry Level",
