@@ -29,22 +29,28 @@ export const AppContextProvider = (props) => {
     const [userData, setUserData] = useState(null)
     const [userApplications, setUserApplications] = useState([])
 
-    // Function to Fetch Jobs 
+    // Function to Fetch Jobs
     const fetchJobs = async () => {
         try {
+            const startTime = Date.now(); // Get the current time in milliseconds
+            console.log("startTime = ", startTime);
 
-            const { data } = await axios.get(backendUrl + '/api/jobs')
+            const { data } = await axios.get(backendUrl + '/api/jobs');
 
             if (data.success) {
-                setJobs(data.jobs)
+                console.log("Jobs fetched successfully:", data.jobs);
+                const endTime = Date.now(); // Get the current time in milliseconds
+                console.log("endTime = ", endTime);
+                const duration = (endTime - startTime) / 1000; // Calculate duration in seconds
+                console.log("Duration = ", duration, " seconds");
+                setJobs(data.jobs);
             } else {
-                toast.error(data.message)
+                toast.error(data.message);
             }
-
         } catch (error) {
-            toast.error(error.message)
+            toast.error(error.message);
         }
-    }
+    };
 
     // Function to Fetch Company Data
     const fetchCompanyData = async () => {

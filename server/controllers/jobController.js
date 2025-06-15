@@ -16,6 +16,42 @@ export const getJobs = async (req, res) => {
     }
 }
 
+// export const getJobsByParams = async (req, res) => {
+//     try {
+//         // Extract query parameters from the request
+//         const { title, location, category, level, type } = req.query;
+//
+//         // Build a filter object dynamically
+//         const filter = {};
+//         if (location) {
+//             filter.location = { $in: location.split('+') }; // Handle multiple locations
+//         }
+//         if (category) {
+//             filter.category = { $in: category.split('+') }; // Handle multiple categories
+//         }
+//         if (title) {
+//             filter.title = { $in: title.split('+') }; // Handle multiple titles
+//         }
+//         if (level) {
+//             filter.level = { $in: level.split('+') }; // Handle multiple levels
+//         }
+//         if (type) {
+//             filter.type = { $in: type.split('+') }; // Handle multiple types
+//         }
+//
+//         // Query the database with the constructed filter
+//         const jobs = await Job.find(filter).populate({
+//             path: 'companyId',
+//             select: '-password'
+//         });
+//
+//         // Respond with the filtered jobs
+//         res.json({ success: true, jobs });
+//     } catch (error) {
+//         res.json({ success: false, message: error.message });
+//     }
+// }
+
 // Get Single Job Using JobID
 export const getJobById = async (req, res) => {
     try {
