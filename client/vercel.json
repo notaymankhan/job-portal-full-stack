@@ -4,10 +4,5 @@
       "source": "/(.*)",
       "destination": "/"
     }
-  ],
-  "functions": {
-    "*": {
-      "runtime": "nodejs20.x"
-    }
-  }
+  ]
 }
