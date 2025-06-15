@@ -1,17 +1,21 @@
 import { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../context/AppContext';
-import { assets, JobCategories, JobLocations } from '../assets/assets';
+import { assets, JobCategories, JobLocations ,JobExperienceLevel , JobType } from '../assets/assets';
 import JobCard from './JobCard';
 import Loading from './Loading.jsx';
-import moments from 'moment';
+import Select from 'react-select'
+
+
 
 const JobListing = () => {
-    const { isSearched, searchFilter, setSearchFilter, jobs } = useContext(AppContext);
+    const { isSearched, searchFilter, setSearchFilter, jobs  } = useContext(AppContext);
 
     const [showFilter, setShowFilter] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [selectedLocations, setSelectedLocations] = useState([]);
+    const [selectedExperienceLevel, setSelectedExperienceLevel] = useState([]);
+    const [selectedJobType, setSelectedJobType] = useState([]);
     const [filteredJobs, setFilteredJobs] = useState(jobs);
 
     const handleCategoryChange = (category) => {
@@ -20,13 +24,39 @@ const JobListing = () => {
         );
     };
 
-    const handleLocationChange = (location) => {
-        setSelectedLocations((prev) =>
-            prev.includes(location) ? prev.filter((c) => c !== location) : [...prev, location]
-        );
-    };
+    // const handleLocationChange = (location) => {
+    //     setSelectedLocations((prev) =>
+    //         prev.includes(location) ? prev.filter((c) => c !== location) : [...prev, location]
+    //     );
+    // };
+    //
+    // const handleExperienceLevelChange = (experienceLevel) => {
+    //     setSelectedExperienceLevel((prev) =>
+    //         prev.includes(experienceLevel)
+    //             ? prev.filter((c) => c !== experienceLevel)
+    //             : [...prev, experienceLevel]
+    //     );
+    // }
+    //
+    // const handleJobTypeChange = (jobType) => {
+    //     setSelectedJobType((prev) =>
+    //         prev.includes(jobType)
+    //             ? prev.filter((c) => c !== jobType)
+    //             : [...prev, jobType]
+    //     );
+    // }
+
 
     useEffect(() => {
+        const currentFilters ={
+            categories: selectedCategories,
+            locations: selectedLocations,
+            experienceLevel: selectedExperienceLevel,
+            jobType: selectedJobType,
+            title: searchFilter.title,
+            location: searchFilter.location
+        }
+        console.log("Current Filters: ", currentFilters);
         const filteringStartTime = Date.now();
         // console.log("filtering started at",moments(filteringStartTime).format('YYYY-MM-DD HH:mm:ss'));
         const matchesCategory = (job) =>
@@ -34,6 +64,12 @@ const JobListing = () => {
 
         const matchesLocation = (job) =>
             selectedLocations.length === 0 || selectedLocations.includes(job.location);
+
+        const matchesExperienceLevel = (job) =>
+            selectedExperienceLevel.length === 0 || selectedExperienceLevel.includes(job.level);
+
+        const matchesJobType = (job) =>
+            selectedJobType.length === 0 || selectedJobType.includes(job.type);
 
         const matchesTitle = (job) =>
             searchFilter.title === '' || job.title.toLowerCase().includes(searchFilter.title.toLowerCase());
@@ -48,6 +84,8 @@ const JobListing = () => {
                 (job) =>
                     matchesCategory(job) &&
                     matchesLocation(job) &&
+                    matchesExperienceLevel(job) &&
+                    matchesJobType(job) &&
                     matchesTitle(job) &&
                     matchesSearchLocation(job)
             );
@@ -58,7 +96,7 @@ const JobListing = () => {
         const filteringDuration = (filteringEndTime - filteringStartTime) / 1000; // in seconds
         console.log("Jobs Filtered Duration = ", filteringDuration, " seconds");
         setCurrentPage(1);
-    }, [jobs, selectedCategories, selectedLocations, searchFilter]);
+    }, [jobs, selectedCategories, selectedLocations, searchFilter, selectedExperienceLevel, selectedJobType]);
 
     return (
         <div className="container 2xl:px-20 mx-auto flex flex-col lg:flex-row max-lg:space-y-8 py-8">
@@ -125,22 +163,73 @@ const JobListing = () => {
                 </div>
 
                 {/* Location Filter */}
+
                 <div className={showFilter ? '' : 'max-lg:hidden'}>
                     <h4 className="font-medium text-lg py-4 pt-14">Search by Location</h4>
-                    <ul className="space-y-4 text-gray-600">
-                        {JobLocations.map((location, index) => (
-                            <li className="flex gap-3 items-center" key={index}>
-                                <input
-                                    className="scale-125"
-                                    type="checkbox"
-                                    onChange={() => handleLocationChange(location)}
-                                    checked={selectedLocations.includes(location)}
-                                />
-                                {location}
-                            </li>
-                        ))}
-                    </ul>
+                    <Select
+                        isMulti
+                        options={
+                            JobLocations.map((location) => ({
+                            value: location,
+                            label: location,
+                        }))}
+                        value={selectedLocations.map((location) => ({ value: location, label: location }))}
+                        onChange={(selectedOptions) =>
+                            setSelectedLocations(selectedOptions.map((option) => option.value))
+                        }
+                        className="basic-multi-select"
+                        classNamePrefix="select"
+                        placeholder="Select Locations"
+                    />
                 </div>
+
+
+                {/* Experience Level Filter */}
+
+                <div className={showFilter ? '' : 'max-lg:hidden'}>
+                    <h4 className="font-medium text-lg py-4 pt-14">Search by Experience Level</h4>
+                    <Select
+                        isMulti
+                        options={JobExperienceLevel.map((experienceLevel) => ({
+                            value: experienceLevel,
+                            label: experienceLevel,
+                        }))}
+                        value={selectedExperienceLevel.map((experienceLevel) => ({
+                            value: experienceLevel,
+                            label: experienceLevel,
+                        }))}
+                        onChange={(selectedOptions) =>
+                            setSelectedExperienceLevel(selectedOptions.map((option) => option.value))
+                        }
+                        className="basic-multi-select"
+                        classNamePrefix="select"
+                        placeholder="Select Experience Levels"
+                    />
+                </div>
+
+                {/* Job Type Filter */}
+                <div className={showFilter ? '' : 'max-lg:hidden'}>
+                    <h4 className="font-medium text-lg py-4 pt-14">Search by Job Type</h4>
+                    <Select
+                        isMulti
+                        options={JobType.map((jobType) => ({
+                            value: jobType,
+                            label: jobType,
+                        }))}
+                        value={selectedJobType.map((jobType) => ({
+                            value: jobType,
+                            label: jobType,
+                        }))}
+                        onChange={(selectedOptions) =>
+                            setSelectedJobType(selectedOptions.map((option) => option.value))
+                        }
+                        className="basic-multi-select"
+                        classNamePrefix="select"
+                        placeholder="Select Job Types"
+                    />
+                </div>
+
+
             </div>
 
             {/* Job listings */}
