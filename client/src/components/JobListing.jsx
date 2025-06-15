@@ -181,22 +181,32 @@ const JobListing = () => {
                                     alt=""
                                 />
                             </a>
-                            {Array.from({
-                                length: Math.ceil(filteredJobs.length / 6),
-                            }).map((_, index) => (
-                                <a key={index} href="#job-list">
-                                    <button
-                                        onClick={() => setCurrentPage(index + 1)}
-                                        className={`w-10 h-10 flex items-center justify-center border border-gray-300 rounded ${
-                                            currentPage === index + 1
-                                                ? 'bg-blue-100 text-blue-500'
-                                                : 'text-gray-500'
-                                        }`}
-                                    >
-                                        {index + 1}
-                                    </button>
-                                </a>
-                            ))}
+                            {(() => {
+                                const totalPages = Math.ceil(filteredJobs.length / 6);
+                                const windowSize = 8;
+
+                                // Calculate the start and end of the sliding window
+                                const startPage = Math.max(1, currentPage - Math.floor(windowSize / 2));
+                                const endPage = Math.min(totalPages, startPage + windowSize - 1);
+
+                                // Adjust the startPage if the window exceeds the total pages
+                                const adjustedStartPage = Math.max(1, endPage - windowSize + 1);
+
+                                return Array.from({ length: endPage - adjustedStartPage + 1 }, (_, index) => (
+                                    <a key={index} href="#job-list">
+                                        <button
+                                            onClick={() => setCurrentPage(adjustedStartPage + index)}
+                                            className={`w-10 h-10 flex items-center justify-center border border-gray-300 rounded ${
+                                                currentPage === adjustedStartPage + index
+                                                    ? 'bg-blue-100 text-blue-500'
+                                                    : 'text-gray-500'
+                                            }`}
+                                        >
+                                            {adjustedStartPage + index}
+                                        </button>
+                                    </a>
+                                ));
+                            })()}
                             <a href="#job-list">
                                 <img
                                     onClick={() =>
